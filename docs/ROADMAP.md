@@ -15,7 +15,7 @@
 - [x] policy-as-code YAML with tests
 - [x] MCP tool lockfile and schema drift check
 - [ ] adversarial unsafe-action fixture
-- [ ] receipt metrics summary table
+- [x] receipt metrics summary table
 - [ ] generated proposal deck outline
 
 ## phase 2 — GOAI/AgentTeams alignment

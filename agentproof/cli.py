@@ -4,7 +4,7 @@ import argparse
 from pathlib import Path
 
 from .teams import run_fixture
-from .receipt import receipt_from_run, verify_receipt
+from .receipt import receipt_from_run, verify_receipt, summary_from_receipt
 from .skills import validate_skill_contracts
 from .contracts import build_tool_lock, verify_tool_lock
 
@@ -23,6 +23,10 @@ def main() -> None:
 
     verify_p = sub.add_parser("verify-receipt")
     verify_p.add_argument("--receipt", required=True)
+
+    summary_p = sub.add_parser("receipt-summary")
+    summary_p.add_argument("--receipt", required=True)
+    summary_p.add_argument("--out", required=True)
 
     lock_p = sub.add_parser("write-tool-lock")
     lock_p.add_argument("--out", default="mcp_tools.lock.json")
@@ -44,6 +48,9 @@ def main() -> None:
         if not ok:
             raise SystemExit(f"receipt hash mismatch, actual={actual}")
         print(f"receipt verified: {args.receipt} sha256={actual}")
+    elif args.cmd == "receipt-summary":
+        summary_from_receipt(Path(args.receipt), Path(args.out))
+        print(f"receipt summary written: {args.out}")
     elif args.cmd == "check-skills":
         errors = validate_skill_contracts()
         if errors:

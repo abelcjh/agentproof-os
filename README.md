@@ -34,6 +34,7 @@ Run the fixture demo:
 ```bash
 python -m agentproof.cli run --fixture fixtures/cases/vendor_refund_claim.json --out artifacts/runs/latest.json
 python -m agentproof.cli receipt --run artifacts/runs/latest.json --out artifacts/receipts/latest.json
+python -m agentproof.cli receipt-summary --receipt artifacts/receipts/latest.json --out artifacts/receipts/latest.md
 python -m agentproof.cli check-tool-lock
 ```
 
