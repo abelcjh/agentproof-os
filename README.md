@@ -34,6 +34,7 @@ Run the fixture demo:
 ```bash
 python -m agentproof.cli run --fixture fixtures/cases/vendor_refund_claim.json --out artifacts/runs/latest.json
 python -m agentproof.cli receipt --run artifacts/runs/latest.json --out artifacts/receipts/latest.json
+python -m agentproof.cli trace-summary --run artifacts/runs/latest.json --out artifacts/runs/latest.md
 python -m agentproof.cli receipt-summary --receipt artifacts/receipts/latest.json --out artifacts/receipts/latest.md
 python -m agentproof.cli check-tool-lock
 ```
@@ -41,6 +42,11 @@ python -m agentproof.cli check-tool-lock
 ## 10-second demo moment
 
 A judge drops in a messy case JSON. The UI/CLI shows a live agent-team trace, a blocked unsafe refund action because approval is missing, a deterministic policy verdict, and a tamper-evident receipt hash.
+
+Current judge-readable proof surfaces:
+
+- `artifacts/runs/latest.md` — AgentTeams-style handoff transcript and worker action ledger.
+- `artifacts/receipts/latest.md` — compact receipt proof table with agents, handoffs, evidence, gates, approval boundary, side-effect boundary, and hash.
 
 ## rule-clean build note
 

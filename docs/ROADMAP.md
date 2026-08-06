@@ -16,6 +16,7 @@
 - [x] MCP tool lockfile and schema drift check
 - [ ] adversarial unsafe-action fixture
 - [x] receipt metrics summary table
+- [x] generated AgentTeams-style trace summary
 - [ ] generated proposal deck outline
 
 ## phase 2 — GOAI/AgentTeams alignment

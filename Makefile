@@ -6,6 +6,7 @@ verify: test demo
 	$(PYTHON) -m agentproof.cli check-skills
 	$(PYTHON) -m agentproof.cli check-tool-lock
 	$(PYTHON) -m agentproof.cli verify-receipt --receipt artifacts/receipts/latest.json
+	$(PYTHON) -m agentproof.cli trace-summary --run artifacts/runs/latest.json --out artifacts/runs/latest.md
 	$(PYTHON) -m agentproof.cli receipt-summary --receipt artifacts/receipts/latest.json --out artifacts/receipts/latest.md
 
 test:
