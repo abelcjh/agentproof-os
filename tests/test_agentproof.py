@@ -4,6 +4,7 @@ from agentproof.teams import run_fixture
 from agentproof.receipt import receipt_from_run, verify_receipt, summary_from_receipt
 from agentproof.trace_summary import trace_summary_from_run
 from agentproof.control_summary import control_summary_from_paths
+from agentproof.health_summary import health_summary_from_paths
 from agentproof.skills import validate_skill_contracts
 from agentproof.contracts import build_tool_lock, verify_tool_lock
 
@@ -61,6 +62,20 @@ def test_control_summary_renders_gateway_style_proof(tmp_path):
     assert "# Control surface summary" in summary
     assert "| policy decision | BLOCK |" in summary
     assert "MCP gateway pattern" in summary
+    assert receipt["receipt_sha256"] in summary
+
+
+def test_health_summary_renders_demo_fallback_contract(tmp_path):
+    run_path = tmp_path / "run.json"
+    receipt_path = tmp_path / "receipt.json"
+    summary_path = tmp_path / "health.md"
+    run_fixture(Path("fixtures/cases/vendor_refund_claim.json"), run_path)
+    receipt = receipt_from_run(run_path, receipt_path)
+    summary = health_summary_from_paths(run_path, receipt_path, summary_path)
+    assert "# Demo health and fallback contract" in summary
+    assert "| one-command verify | make verify |" in summary
+    assert "| AI/API dependency | not required |" in summary
+    assert "| external side effects | blocked |" in summary
     assert receipt["receipt_sha256"] in summary
 
 

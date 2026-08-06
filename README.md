@@ -37,6 +37,7 @@ python -m agentproof.cli receipt --run artifacts/runs/latest.json --out artifact
 python -m agentproof.cli trace-summary --run artifacts/runs/latest.json --out artifacts/runs/latest.md
 python -m agentproof.cli receipt-summary --receipt artifacts/receipts/latest.json --out artifacts/receipts/latest.md
 python -m agentproof.cli control-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/control/latest.md
+python -m agentproof.cli health-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/health/latest.md
 python -m agentproof.cli check-tool-lock
 ```
 
@@ -49,6 +50,7 @@ Current judge-readable proof surfaces:
 - `artifacts/runs/latest.md` — AgentTeams-style handoff transcript and worker action ledger.
 - `artifacts/receipts/latest.md` — compact receipt proof table with agents, handoffs, evidence, gates, approval boundary, side-effect boundary, and hash.
 - `artifacts/control/latest.md` — gateway-style control surface showing task identity, actor boundary, requested action, verifier result, policy decision, approval gate, side-effect state, and rule-clean MCP/observability inspiration mapping.
+- `artifacts/health/latest.md` — demo health and fallback contract showing public repo, `make verify`, fixture mode, no-key AI fallback, blocked side effects, receipt hash, and honest non-live scope.
 
 ## rule-clean build note
 

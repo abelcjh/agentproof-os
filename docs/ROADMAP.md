@@ -18,6 +18,7 @@
 - [x] receipt metrics summary table
 - [x] generated AgentTeams-style trace summary
 - [x] generated gateway/control-surface summary
+- [x] generated demo health/fallback contract
 - [ ] generated proposal deck outline
 
 ## phase 2 — GOAI/AgentTeams alignment

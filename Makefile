@@ -9,6 +9,7 @@ verify: test demo
 	$(PYTHON) -m agentproof.cli trace-summary --run artifacts/runs/latest.json --out artifacts/runs/latest.md
 	$(PYTHON) -m agentproof.cli receipt-summary --receipt artifacts/receipts/latest.json --out artifacts/receipts/latest.md
 	$(PYTHON) -m agentproof.cli control-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/control/latest.md
+	$(PYTHON) -m agentproof.cli health-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/health/latest.md
 
 test:
 	$(PYTHON) -m pytest -q
