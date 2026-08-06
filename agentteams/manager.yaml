@@ -1,0 +1,11 @@
+apiVersion: agentteams.io/v1beta1
+kind: Manager
+metadata:
+  name: agentproof-manager
+  labels:
+    app.kubernetes.io/name: agentproof-os
+spec:
+  description: Coordinates the AgentProof OS ComplianceOps team and owns task decomposition, state tracking, and reviewer escalation.
+  runtime: openclaw
+  skills:
+    - evidence-packaging

@@ -1,0 +1,17 @@
+apiVersion: agentteams.io/v1beta1
+kind: Team
+metadata:
+  name: agentproof-complianceops-team
+spec:
+  managerRef: agentproof-manager
+  description: AgentProof OS reference team for compliance and financial-risk execution receipts.
+  workerMembers:
+    - evidence-agent
+    - policy-agent
+    - verifier-agent
+    - security-auditor
+  humanMembers:
+    - compliance-reviewer
+  sharedArtifacts:
+    - artifacts/runs/latest.json
+    - artifacts/receipts/latest.json

@@ -12,8 +12,8 @@
 
 ## phase 1 — stronger proof density
 
-- [ ] policy-as-code YAML with tests
-- [ ] MCP tool lockfile and schema drift check
+- [x] policy-as-code YAML with tests
+- [x] MCP tool lockfile and schema drift check
 - [ ] adversarial unsafe-action fixture
 - [ ] receipt metrics summary table
 - [ ] generated proposal deck outline
@@ -21,7 +21,7 @@
 ## phase 2 — GOAI/AgentTeams alignment
 
 - [ ] AgentTeams install/access spike
-- [ ] map TeamRunner to AgentTeams Manager/Worker/Human concepts in executable config
+- [x] map TeamRunner to AgentTeams Manager/Worker/Human concepts in executable config
 - [ ] Higress/MCP route compatibility doc
 - [ ] Alibaba Cloud Skills / Nacos / AgentLoop integration notes or fallback switch
 

@@ -1,0 +1,12 @@
+apiVersion: agentteams.io/v1beta1
+kind: Human
+metadata:
+  name: compliance-reviewer
+spec:
+  description: Human reviewer who approves or rejects financial/legal/destructive actions after reviewing the execution receipt.
+  approvalScopes:
+    - refund
+    - payout
+    - legal_filing
+    - external_send
+    - delete_record

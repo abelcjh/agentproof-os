@@ -1,0 +1,13 @@
+{
+  "schema_version": "0.1.0",
+  "tool_count": 1,
+  "tools": [
+    {
+      "digest_sha256": "f878850140f5aed548022eb920f23768331eda4c4e9a138820a9e349643668d9",
+      "name": "case-store",
+      "path": "mcp_tools/case-store.tool.yaml",
+      "protocol_shape": "mcp-tool",
+      "version": "0.1.0"
+    }
+  ]
+}

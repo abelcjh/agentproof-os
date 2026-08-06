@@ -3,6 +3,7 @@ from pathlib import Path
 from agentproof.teams import run_fixture
 from agentproof.receipt import receipt_from_run, verify_receipt
 from agentproof.skills import validate_skill_contracts
+from agentproof.contracts import build_tool_lock, verify_tool_lock
 
 
 def test_fixture_blocks_refund_without_approval(tmp_path):
@@ -26,3 +27,9 @@ def test_receipt_hash_roundtrip(tmp_path):
 
 def test_skill_contracts_valid():
     assert validate_skill_contracts() == []
+
+
+def test_tool_lock_matches_contracts():
+    ok, actual = verify_tool_lock(Path("mcp_tools.lock.json"))
+    assert ok
+    assert actual["tool_count"] == len(build_tool_lock()["tools"])

@@ -6,6 +6,7 @@ from pathlib import Path
 from .teams import run_fixture
 from .receipt import receipt_from_run, verify_receipt
 from .skills import validate_skill_contracts
+from .contracts import build_tool_lock, verify_tool_lock
 
 
 def main() -> None:
@@ -22,6 +23,12 @@ def main() -> None:
 
     verify_p = sub.add_parser("verify-receipt")
     verify_p.add_argument("--receipt", required=True)
+
+    lock_p = sub.add_parser("write-tool-lock")
+    lock_p.add_argument("--out", default="mcp_tools.lock.json")
+
+    verify_lock_p = sub.add_parser("check-tool-lock")
+    verify_lock_p.add_argument("--lock", default="mcp_tools.lock.json")
 
     sub.add_parser("check-skills")
     args = parser.parse_args()
@@ -42,6 +49,16 @@ def main() -> None:
         if errors:
             raise SystemExit("skill contract errors:\n" + "\n".join(errors))
         print("skill contracts verified")
+    elif args.cmd == "write-tool-lock":
+        import json
+        lock = build_tool_lock()
+        Path(args.out).write_text(json.dumps(lock, indent=2, sort_keys=True))
+        print(f"tool lock written: {args.out} tools={lock['tool_count']}")
+    elif args.cmd == "check-tool-lock":
+        ok, actual = verify_tool_lock(Path(args.lock))
+        if not ok:
+            raise SystemExit("tool lock drift detected; run `python -m agentproof.cli write-tool-lock`")
+        print(f"tool lock verified: {args.lock} tools={actual['tool_count']}")
 
 
 if __name__ == "__main__":

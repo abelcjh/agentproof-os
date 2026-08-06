@@ -3,12 +3,13 @@ from __future__ import annotations
 from dataclasses import dataclass, field, asdict
 from datetime import datetime, timezone
 from typing import Any, Literal
+import os
 
 Verdict = Literal["ALLOW", "NEEDS_REVIEW", "BLOCK"]
 
 
 def utc_now() -> str:
-    return datetime.now(timezone.utc).isoformat()
+    return os.environ.get("AGENTPROOF_FIXED_TIME") or datetime.now(timezone.utc).isoformat()
 
 
 @dataclass

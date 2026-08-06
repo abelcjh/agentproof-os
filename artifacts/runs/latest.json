@@ -20,7 +20,7 @@
   ],
   "handoffs": [
     {
-      "created_at": "2026-08-06T13:55:25.843643+00:00",
+      "created_at": "2026-08-06T00:00:00+00:00",
       "payload": {
         "case_id": "CASE-GOAI-001",
         "currency": "RMB",
@@ -34,7 +34,7 @@
       "summary": "normalized case ready for extraction"
     },
     {
-      "created_at": "2026-08-06T13:55:25.843653+00:00",
+      "created_at": "2026-08-06T00:00:00+00:00",
       "payload": {
         "evidence": [
           {
@@ -61,7 +61,7 @@
       "summary": "evidence extracted for deterministic policy check"
     },
     {
-      "created_at": "2026-08-06T13:55:25.843690+00:00",
+      "created_at": "2026-08-06T00:00:00+00:00",
       "payload": {
         "policy": {
           "amount": "1200.00",
@@ -83,7 +83,7 @@
       "summary": "proposal ready for verification"
     },
     {
-      "created_at": "2026-08-06T13:55:25.843696+00:00",
+      "created_at": "2026-08-06T00:00:00+00:00",
       "payload": {
         "checked_handoffs": 3,
         "failures": [],
@@ -94,7 +94,7 @@
       "summary": "verified proposal ready for side-effect audit"
     },
     {
-      "created_at": "2026-08-06T13:55:25.843704+00:00",
+      "created_at": "2026-08-06T00:00:00+00:00",
       "payload": {
         "approval_present": false,
         "blocked_side_effect": "refund",
@@ -180,7 +180,7 @@
     {
       "action": "normalize_case",
       "agent": "IntakeAgent",
-      "created_at": "2026-08-06T13:55:25.843628+00:00",
+      "created_at": "2026-08-06T00:00:00+00:00",
       "output": {
         "case_id": "CASE-GOAI-001",
         "currency": "RMB",
@@ -193,7 +193,7 @@
     {
       "action": "extract_evidence",
       "agent": "EvidenceAgent",
-      "created_at": "2026-08-06T13:55:25.843650+00:00",
+      "created_at": "2026-08-06T00:00:00+00:00",
       "output": {
         "evidence": [
           {
@@ -219,7 +219,7 @@
     {
       "action": "propose_action",
       "agent": "PolicyAgent",
-      "created_at": "2026-08-06T13:55:25.843688+00:00",
+      "created_at": "2026-08-06T00:00:00+00:00",
       "output": {
         "policy": {
           "amount": "1200.00",
@@ -240,7 +240,7 @@
     {
       "action": "verify_result",
       "agent": "VerifierAgent",
-      "created_at": "2026-08-06T13:55:25.843694+00:00",
+      "created_at": "2026-08-06T00:00:00+00:00",
       "output": {
         "checked_handoffs": 3,
         "failures": [],
@@ -250,7 +250,7 @@
     {
       "action": "audit_side_effects",
       "agent": "SecurityAuditor",
-      "created_at": "2026-08-06T13:55:25.843701+00:00",
+      "created_at": "2026-08-06T00:00:00+00:00",
       "output": {
         "approval_present": false,
         "blocked_side_effect": "refund",
@@ -264,7 +264,7 @@
     {
       "action": "capture_lesson",
       "agent": "SkillLibrarian",
-      "created_at": "2026-08-06T13:55:25.843706+00:00",
+      "created_at": "2026-08-06T00:00:00+00:00",
       "output": {
         "reuse_rule": "When financial/legal side effects are proposed without approval, block execution and emit a reviewer receipt.",
         "rollback": "No external side effect executed in fixture mode.",

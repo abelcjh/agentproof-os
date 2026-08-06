@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: List
+items:
+  - apiVersion: agentteams.io/v1beta1
+    kind: Worker
+    metadata:
+      name: evidence-agent
+    spec:
+      role: EvidenceAgent
+      description: Extracts and reconciles case evidence through reusable Skills and MCP-style tools.
+      skills:
+        - evidence-reconciliation
+  - apiVersion: agentteams.io/v1beta1
+    kind: Worker
+    metadata:
+      name: policy-agent
+    spec:
+      role: PolicyAgent
+      description: Applies deterministic policy-as-code to propose ALLOW, NEEDS_REVIEW, or BLOCK outcomes.
+      skills:
+        - approval-gated-action
+  - apiVersion: agentteams.io/v1beta1
+    kind: Worker
+    metadata:
+      name: verifier-agent
+    spec:
+      role: VerifierAgent
+      description: Checks evidence completeness, handoff count, policy consistency, and receipt integrity.
+      skills:
+        - recovery-verification
+  - apiVersion: agentteams.io/v1beta1
+    kind: Worker
+    metadata:
+      name: security-auditor
+    spec:
+      role: SecurityAuditor
+      description: Blocks risky side effects without human approval and emits audit reasons.
+      skills:
+        - approval-gated-action

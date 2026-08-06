@@ -13,9 +13,10 @@ The first demo scenario is an enterprise **compliance / financial-risk evidence 
 | at least 3 agents with different roles | IntakeAgent, EvidenceAgent, PolicyAgent, VerifierAgent, SecurityAuditor, SkillLibrarian |
 | task decomposition + context passing | `agentproof/teams.py` emits typed `Handoff` records and trace JSON |
 | reusable Skills | `skills/*.skill.yaml` with schemas, tools, failure handling, versioning |
-| tool/MCP integration | `mcp_tools/*.tool.yaml` + Python adapters; REST/MCP bridge planned |
+| tool/MCP integration | `mcp_tools/*.tool.yaml`, `mcp_tools.lock.json` behavior digest, Python adapters; REST/MCP bridge planned |
+| AgentTeams design baseline | `agentteams/*.yaml`, `docs/AGENTTEAMS_FIT.md` |
 | result verification | `agentproof/verifier.py` deterministic gates and fixture tests |
-| execution evidence capture | `artifacts/runs/*.json`, `artifacts/receipts/*.json`, receipt hash chain |
+| execution evidence capture | `artifacts/runs/*.json`, `artifacts/receipts/*.json`, receipt hash chain, OTel-shaped trace sample |
 | security auditing | `agentproof/security.py` blocks forbidden side effects / missing approvals |
 | open-source value | MIT repo, schemas, demo fixture, one-command verification |
 
@@ -33,6 +34,7 @@ Run the fixture demo:
 ```bash
 python -m agentproof.cli run --fixture fixtures/cases/vendor_refund_claim.json --out artifacts/runs/latest.json
 python -m agentproof.cli receipt --run artifacts/runs/latest.json --out artifacts/receipts/latest.json
+python -m agentproof.cli check-tool-lock
 ```
 
 ## 10-second demo moment

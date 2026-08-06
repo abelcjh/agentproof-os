@@ -1,0 +1,19 @@
+schema_version: 0.1.0
+policy_name: approval-gated-enterprise-actions
+default_verdict: NEEDS_REVIEW
+rules:
+  - id: financial-side-effect-human-approval
+    match_actions: [refund, payout]
+    requires_human_approval: true
+    no_approval_verdict: BLOCK
+    rationale: Financial side effects must be approved by a human reviewer before execution.
+  - id: legal-or-external-send-human-approval
+    match_actions: [legal_filing, external_send]
+    requires_human_approval: true
+    no_approval_verdict: BLOCK
+    rationale: Legal filings and external communications need explicit approval.
+  - id: destructive-action-human-approval
+    match_actions: [delete_record]
+    requires_human_approval: true
+    no_approval_verdict: BLOCK
+    rationale: Destructive actions need explicit approval and rollback evidence.

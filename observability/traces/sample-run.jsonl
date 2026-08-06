@@ -1,0 +1,4 @@
+{"trace_id":"case-goai-001","span_id":"span-001","parent_span_id":null,"span_kind":"ENTRY","agent.name":"TeamRunner","status":"OK","evidence_uri":"fixtures/cases/vendor_refund_claim.json"}
+{"trace_id":"case-goai-001","span_id":"span-002","parent_span_id":"span-001","span_kind":"AGENT","agent.name":"IntakeAgent","status":"OK","evidence_uri":"artifacts/runs/latest.json"}
+{"trace_id":"case-goai-001","span_id":"span-003","parent_span_id":"span-001","span_kind":"SKILL","agent.name":"EvidenceAgent","gen_ai.skill.name":"evidence-reconciliation","gen_ai.skill.version":"0.1.0","tool.name":"extract_evidence","status":"OK","evidence_uri":"artifacts/runs/latest.json"}
+{"trace_id":"case-goai-001","span_id":"span-004","parent_span_id":"span-001","span_kind":"SECURITY","agent.name":"SecurityAuditor","gen_ai.skill.name":"approval-gated-action","status":"BLOCK","blocked_action":"refund","evidence_uri":"artifacts/receipts/latest.json"}
