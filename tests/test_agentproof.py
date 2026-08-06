@@ -1,0 +1,28 @@
+from pathlib import Path
+
+from agentproof.teams import run_fixture
+from agentproof.receipt import receipt_from_run, verify_receipt
+from agentproof.skills import validate_skill_contracts
+
+
+def test_fixture_blocks_refund_without_approval(tmp_path):
+    run_path = tmp_path / "run.json"
+    data = run_fixture(Path("fixtures/cases/vendor_refund_claim.json"), run_path)
+    assert len({step["agent"] for step in data["steps"]}) >= 3
+    assert data["verification"]["verdict"] == "PASS"
+    assert data["security"]["verdict"] == "BLOCK"
+    assert data["security"]["blocked_side_effect"] == "refund"
+
+
+def test_receipt_hash_roundtrip(tmp_path):
+    run_path = tmp_path / "run.json"
+    receipt_path = tmp_path / "receipt.json"
+    run_fixture(Path("fixtures/cases/vendor_refund_claim.json"), run_path)
+    receipt = receipt_from_run(run_path, receipt_path)
+    ok, actual = verify_receipt(receipt_path)
+    assert ok
+    assert actual == receipt["receipt_sha256"]
+
+
+def test_skill_contracts_valid():
+    assert validate_skill_contracts() == []

@@ -1,0 +1,42 @@
+{
+  "agent_count": 6,
+  "case_id": "CASE-GOAI-001",
+  "evidence_sources": [
+    "invoice-7781",
+    "ticket-183"
+  ],
+  "handoff_count": 5,
+  "no_external_side_effect_executed": true,
+  "objective": "Decide whether an enterprise refund claim can be executed safely.",
+  "proposal": {
+    "policy": {
+      "amount": "1200.00",
+      "policy_basis": "financial/legal/destructive actions require human approval; inconsistent evidence blocks execution",
+      "requested_action": "refund",
+      "requires_human_approval": true,
+      "risk_tier": "HIGH"
+    },
+    "reconciliation": {
+      "amounts": [
+        "1200.00"
+      ],
+      "consistent": true,
+      "selected_amount": "1200.00"
+    }
+  },
+  "receipt_sha256": "efc2ee49361f7c288fafd4cc5cf95ec929328c48a66ccbd858c612c40526da80",
+  "security": {
+    "approval_present": false,
+    "blocked_side_effect": "refund",
+    "reasons": [
+      "refund requires explicit human approval",
+      "policy gate requires human approval"
+    ],
+    "verdict": "BLOCK"
+  },
+  "verification": {
+    "checked_handoffs": 3,
+    "failures": [],
+    "verdict": "PASS"
+  }
+}

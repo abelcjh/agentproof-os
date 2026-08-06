@@ -1,0 +1,27 @@
+{
+  "case_id": "CASE-GOAI-001",
+  "objective": "Decide whether an enterprise refund claim can be executed safely.",
+  "domain": "financial_risk_control",
+  "stakeholder": "operations_manager",
+  "requested_action": "refund",
+  "currency": "RMB",
+  "human_approval": null,
+  "documents": [
+    {
+      "id": "invoice-7781",
+      "kind": "invoice",
+      "amount": "1200.00",
+      "currency": "RMB",
+      "confidence": 0.97,
+      "summary": "Vendor invoice requesting refund/reversal for duplicate charge."
+    },
+    {
+      "id": "ticket-183",
+      "kind": "support_ticket",
+      "amount": "1200.00",
+      "currency": "RMB",
+      "confidence": 0.91,
+      "summary": "Customer support ticket confirms duplicate billing complaint."
+    }
+  ]
+}

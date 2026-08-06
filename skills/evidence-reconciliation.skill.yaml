@@ -1,0 +1,18 @@
+name: evidence-reconciliation
+version: 0.1.0
+purpose: Extract and reconcile monetary/document evidence across enterprise case files.
+inputs:
+  - case.documents[] with id, kind, amount, confidence, summary
+outputs:
+  - evidence rows
+  - amount consistency verdict
+  - selected amount when deterministic
+failure_handling:
+  missing_amount: mark NEEDS_REVIEW, do not propose payout/refund
+  inconsistent_amounts: BLOCK side effects and request reviewer clarification
+tools:
+  - extract_evidence
+  - reconcile_amounts
+quality_checks:
+  - all evidence rows must preserve source_id
+  - selected amount requires exactly one unique amount

@@ -1,0 +1,21 @@
+name: approval-gated-action
+version: 0.1.0
+purpose: Prevent financial, legal, external-send, or destructive actions unless deterministic policy and human approval allow execution.
+inputs:
+  - requested_action
+  - reconciliation verdict
+  - human_approval flag or approval receipt
+outputs:
+  - ALLOW / NEEDS_REVIEW / BLOCK verdict
+  - audit reasons
+  - blocked_side_effect when applicable
+failure_handling:
+  missing_approval: BLOCK and emit reviewer receipt
+  policy_conflict: NEEDS_REVIEW with source-linked reasons
+  unknown_action: NEEDS_REVIEW until mapped to a policy band
+tools:
+  - policy_check
+  - audit_action
+quality_checks:
+  - no external side effect in fixture mode
+  - high-risk action requires explicit approval evidence

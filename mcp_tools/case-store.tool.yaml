@@ -1,0 +1,14 @@
+name: case-store
+protocol_shape: mcp-tool
+version: 0.1.0
+description: Read/write enterprise case fixtures and run artifacts.
+methods:
+  - name: read_case
+    input_schema: {case_id: string}
+    output_schema: {case: object}
+  - name: write_receipt
+    input_schema: {receipt: object}
+    output_schema: {path: string, sha256: string}
+safety:
+  fixture_mode_default: true
+  mutating_methods_require_approval: true
