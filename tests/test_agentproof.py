@@ -3,6 +3,7 @@ from pathlib import Path
 from agentproof.teams import run_fixture
 from agentproof.receipt import receipt_from_run, verify_receipt, summary_from_receipt
 from agentproof.trace_summary import trace_summary_from_run
+from agentproof.control_summary import control_summary_from_paths
 from agentproof.skills import validate_skill_contracts
 from agentproof.contracts import build_tool_lock, verify_tool_lock
 
@@ -48,6 +49,19 @@ def test_trace_summary_renders_agentteams_handoffs(tmp_path):
     assert "IntakeAgent → EvidenceAgent" in summary
     assert "SecurityAuditor::audit_side_effects" in summary
     assert "BLOCK `refund`" in summary
+
+
+def test_control_summary_renders_gateway_style_proof(tmp_path):
+    run_path = tmp_path / "run.json"
+    receipt_path = tmp_path / "receipt.json"
+    summary_path = tmp_path / "control.md"
+    run_fixture(Path("fixtures/cases/vendor_refund_claim.json"), run_path)
+    receipt = receipt_from_run(run_path, receipt_path)
+    summary = control_summary_from_paths(run_path, receipt_path, summary_path)
+    assert "# Control surface summary" in summary
+    assert "| policy decision | BLOCK |" in summary
+    assert "MCP gateway pattern" in summary
+    assert receipt["receipt_sha256"] in summary
 
 
 def test_skill_contracts_valid():

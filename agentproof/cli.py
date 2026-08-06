@@ -6,6 +6,7 @@ from pathlib import Path
 from .teams import run_fixture
 from .receipt import receipt_from_run, verify_receipt, summary_from_receipt
 from .trace_summary import trace_summary_from_run
+from .control_summary import control_summary_from_paths
 from .skills import validate_skill_contracts
 from .contracts import build_tool_lock, verify_tool_lock
 
@@ -33,6 +34,11 @@ def main() -> None:
     trace_p.add_argument("--run", required=True)
     trace_p.add_argument("--out", required=True)
 
+    control_p = sub.add_parser("control-summary")
+    control_p.add_argument("--run", required=True)
+    control_p.add_argument("--receipt", required=True)
+    control_p.add_argument("--out", required=True)
+
     lock_p = sub.add_parser("write-tool-lock")
     lock_p.add_argument("--out", default="mcp_tools.lock.json")
 
@@ -59,6 +65,9 @@ def main() -> None:
     elif args.cmd == "trace-summary":
         trace_summary_from_run(Path(args.run), Path(args.out))
         print(f"trace summary written: {args.out}")
+    elif args.cmd == "control-summary":
+        control_summary_from_paths(Path(args.run), Path(args.receipt), Path(args.out))
+        print(f"control summary written: {args.out}")
     elif args.cmd == "check-skills":
         errors = validate_skill_contracts()
         if errors:

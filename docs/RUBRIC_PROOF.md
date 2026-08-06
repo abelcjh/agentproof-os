@@ -11,6 +11,7 @@
 | multi-agent collaboration is judge-readable without raw JSON | `artifacts/runs/latest.md` | `python -m agentproof.cli trace-summary ...` | verified by `make verify` |
 | receipt is tamper-evident | `artifacts/receipts/latest.json` | `python -m agentproof.cli verify-receipt ...` | verified: `efc2ee49361f7c288fafd4cc5cf95ec929328c48a66ccbd858c612c40526da80` |
 | receipt has a judge-readable proof table | `artifacts/receipts/latest.md` | `python -m agentproof.cli receipt-summary ...` | verified by `make verify` |
+| gateway-style controls are visible without claiming live MCP deployment | `artifacts/control/latest.md` | `python -m agentproof.cli control-summary ...` | verified by `make verify` |
 
 ## write-ahead rule
 
