@@ -27,7 +27,7 @@ This is the fastest reviewer entrypoint: it links every judge-visible proof surf
 | evidence sources | invoice-7781, ticket-183 | source IDs are retained in the decision path |
 | deterministic verifier | PASS | failures=0 |
 | side-effect policy | BLOCK | blocked=refund |
-| receipt sha256 | efc2ee49361f7c288fafd4cc5cf95ec929328c48a66ccbd858c612c40526da80 | hashable exit artifact for reviewer replay |
+| receipt sha256 | acd2aec115bb16121ecf1633b8012dca58d245f71f830fb16164523d1ac3ca52 | hashable exit artifact for reviewer replay |
 
 ## replay command
 

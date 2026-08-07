@@ -1,0 +1,31 @@
+# Reddit-native search ladder for GOAI AgentProof OS
+# Use these INSIDE Reddit/API/subreddits; do not wrap as one long site:reddit.com Google query.
+
+multi agent
+multi-agent framework
+agent framework
+agent observability
+agent governance
+agent audit trail
+runtime verification agents
+MCP agents
+tool calling agents
+human in the loop agents
+AI hackathon winner
+lablab ai agent
+AI Agent Olympics
+enterprise agent governance
+agent compliance
+agent security
+
+# candidate subreddits
+LocalLLaMA
+MachineLearning
+AI_Agents
+singularity
+ArtificialInteligence
+opensource
+SaaS
+startups
+hackathons
+programming

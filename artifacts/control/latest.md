@@ -23,4 +23,4 @@ It turns the gateway / observability inspiration into concrete, local proof with
 | AgentTeams / HiClaw | maps handoffs to visible Manager → Worker room messages | `artifacts/runs/latest.md` |
 | MCP gateway pattern | intercept tool/action before execution; deny risky mutation without approval | this control summary + `agentproof/security.py` |
 | observability pattern | emit task id, actor, tool/action, decision, reason, and receipt hash | `artifacts/receipts/latest.json` |
-| tamper-evident exit artifact | bind final decision to sha256 receipt | efc2ee49361f7c288fafd4cc5cf95ec929328c48a66ccbd858c612c40526da80 |
+| tamper-evident exit artifact | bind final decision to sha256 receipt | acd2aec115bb16121ecf1633b8012dca58d245f71f830fb16164523d1ac3ca52 |

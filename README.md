@@ -45,6 +45,7 @@ python -m agentproof.cli carrier-summary --run artifacts/runs/latest.json --rece
 python -m agentproof.cli identity-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/identity/latest.md
 python -m agentproof.cli ops-metrics-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/ops/latest.md
 python -m agentproof.cli governance-gates-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/governance/latest.md
+python -m agentproof.cli runtime-controls-summary --run artifacts/support/latest.json --receipt artifacts/support/latest.receipt.json --out artifacts/runtime/latest.md
 python -m agentproof.cli check-tool-lock
 ```
 
@@ -65,6 +66,7 @@ Current judge-readable proof surfaces:
 - `artifacts/identity/latest.md` — identity and authority boundary receipt showing requester, responsible party, approval requirement, denied side effect, and portable authority digest without claiming live DID/OAuth/JWS execution.
 - `artifacts/ops/latest.md` — operations metrics and observability receipt showing fixture-backed agent/step/handoff/evidence counters, policy decision, side-effect count, and OTel-shaped export fields without claiming a live collector.
 - `artifacts/governance/latest.md` — gateway governance gates receipt showing schema/evidence binding, budget/loop guard, deterministic verifier, human approval authority, side-effect boundary, and portable gate digest without claiming a deployed MCP proxy.
+- `artifacts/runtime/latest.md` — runtime controls receipt showing accepted-but-not-verified detection, per-tool agent identity, dead-man switch budget, waterfall trace, and a Postgres-style support workflow that drafts but blocks outbound send without approval.
 
 ## rule-clean build note
 

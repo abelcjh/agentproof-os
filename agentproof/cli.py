@@ -16,6 +16,7 @@ from .identity_summary import identity_summary_from_paths
 from .ops_metrics_summary import ops_metrics_summary_from_paths
 from .governance_gates_summary import governance_gates_summary_from_paths
 from .adversarial_summary import adversarial_summary_from_paths
+from .runtime_controls import runtime_controls_summary_from_paths
 from .skills import validate_skill_contracts
 from .contracts import build_tool_lock, verify_tool_lock
 
@@ -93,6 +94,11 @@ def main() -> None:
     adversarial_p.add_argument("--receipt", required=True)
     adversarial_p.add_argument("--out", required=True)
 
+    runtime_p = sub.add_parser("runtime-controls-summary")
+    runtime_p.add_argument("--run", required=True)
+    runtime_p.add_argument("--receipt", required=True)
+    runtime_p.add_argument("--out", required=True)
+
     lock_p = sub.add_parser("write-tool-lock")
     lock_p.add_argument("--out", default="mcp_tools.lock.json")
 
@@ -149,6 +155,9 @@ def main() -> None:
     elif args.cmd == "adversarial-summary":
         adversarial_summary_from_paths(Path(args.run), Path(args.receipt), Path(args.out))
         print(f"adversarial summary written: {args.out}")
+    elif args.cmd == "runtime-controls-summary":
+        runtime_controls_summary_from_paths(Path(args.run), Path(args.receipt), Path(args.out))
+        print(f"runtime controls summary written: {args.out}")
     elif args.cmd == "check-skills":
         errors = validate_skill_contracts()
         if errors:

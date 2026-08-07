@@ -1,33 +1,33 @@
 {
-  "case_id": "CASE-GOAI-001",
+  "case_id": "CASE-GOAI-POSTGRES-001",
   "evidence": [
     {
-      "amount": "1200.00",
-      "confidence": 0.97,
-      "currency": "RMB",
-      "kind": "invoice",
-      "source_id": "invoice-7781",
-      "summary": "Vendor invoice requesting refund/reversal for duplicate charge."
+      "amount": "0.00",
+      "confidence": 0.99,
+      "currency": "USD",
+      "kind": "postgres_support_ticket",
+      "source_id": "postgres-ticket-4421",
+      "summary": "Customer asks for refund-status update; database shows duplicate charge review is still pending."
     },
     {
-      "amount": "1200.00",
-      "confidence": 0.91,
-      "currency": "RMB",
-      "kind": "support_ticket",
-      "source_id": "ticket-183",
-      "summary": "Customer support ticket confirms duplicate billing complaint."
+      "amount": "0.00",
+      "confidence": 0.98,
+      "currency": "USD",
+      "kind": "postgres_order_record",
+      "source_id": "postgres-order-817",
+      "summary": "Order table confirms no refund has been executed and account is active."
     }
   ],
   "handoffs": [
     {
       "created_at": "2026-08-06T00:00:00+00:00",
       "payload": {
-        "case_id": "CASE-GOAI-001",
-        "currency": "RMB",
-        "domain": "financial_risk_control",
+        "case_id": "CASE-GOAI-POSTGRES-001",
+        "currency": "USD",
+        "domain": "support_ops",
         "missing_fields": [],
-        "requested_action": "refund",
-        "stakeholder": "operations_manager",
+        "requested_action": "external_send",
+        "stakeholder": "support_manager",
         "tool_calls": [
           {
             "agent_role": "Intake",
@@ -48,20 +48,20 @@
       "payload": {
         "evidence": [
           {
-            "amount": "1200.00",
-            "confidence": 0.97,
-            "currency": "RMB",
-            "kind": "invoice",
-            "source_id": "invoice-7781",
-            "summary": "Vendor invoice requesting refund/reversal for duplicate charge."
+            "amount": "0.00",
+            "confidence": 0.99,
+            "currency": "USD",
+            "kind": "postgres_support_ticket",
+            "source_id": "postgres-ticket-4421",
+            "summary": "Customer asks for refund-status update; database shows duplicate charge review is still pending."
           },
           {
-            "amount": "1200.00",
-            "confidence": 0.91,
-            "currency": "RMB",
-            "kind": "support_ticket",
-            "source_id": "ticket-183",
-            "summary": "Customer support ticket confirms duplicate billing complaint."
+            "amount": "0.00",
+            "confidence": 0.98,
+            "currency": "USD",
+            "kind": "postgres_order_record",
+            "source_id": "postgres-order-817",
+            "summary": "Order table confirms no refund has been executed and account is active."
           }
         ],
         "evidence_count": 2,
@@ -84,18 +84,18 @@
       "created_at": "2026-08-06T00:00:00+00:00",
       "payload": {
         "policy": {
-          "amount": "1200.00",
+          "amount": "0.00",
           "policy_basis": "financial/legal/destructive actions require human approval; inconsistent evidence blocks execution",
-          "requested_action": "refund",
+          "requested_action": "external_send",
           "requires_human_approval": true,
           "risk_tier": "HIGH"
         },
         "reconciliation": {
           "amounts": [
-            "1200.00"
+            "0.00"
           ],
           "consistent": true,
-          "selected_amount": "1200.00"
+          "selected_amount": "0.00"
         },
         "tool_calls": [
           {
@@ -145,9 +145,9 @@
       "created_at": "2026-08-06T00:00:00+00:00",
       "payload": {
         "approval_present": false,
-        "blocked_side_effect": "refund",
+        "blocked_side_effect": "external_send",
         "reasons": [
-          "refund requires explicit human approval",
+          "external_send requires explicit human approval",
           "policy gate requires human approval"
         ],
         "tool_calls": [
@@ -168,12 +168,12 @@
     }
   ],
   "normalized_case": {
-    "case_id": "CASE-GOAI-001",
-    "currency": "RMB",
-    "domain": "financial_risk_control",
+    "case_id": "CASE-GOAI-POSTGRES-001",
+    "currency": "USD",
+    "domain": "support_ops",
     "missing_fields": [],
-    "requested_action": "refund",
-    "stakeholder": "operations_manager",
+    "requested_action": "external_send",
+    "stakeholder": "support_manager",
     "tool_calls": [
       {
         "agent_role": "Intake",
@@ -185,21 +185,21 @@
       }
     ]
   },
-  "objective": "Decide whether an enterprise refund claim can be executed safely.",
+  "objective": "Draft a customer support reply from trusted records while blocking outbound send until human approval.",
   "proposal": {
     "policy": {
-      "amount": "1200.00",
+      "amount": "0.00",
       "policy_basis": "financial/legal/destructive actions require human approval; inconsistent evidence blocks execution",
-      "requested_action": "refund",
+      "requested_action": "external_send",
       "requires_human_approval": true,
       "risk_tier": "HIGH"
     },
     "reconciliation": {
       "amounts": [
-        "1200.00"
+        "0.00"
       ],
       "consistent": true,
-      "selected_amount": "1200.00"
+      "selected_amount": "0.00"
     },
     "tool_calls": [
       {
@@ -221,31 +221,31 @@
     ]
   },
   "raw_case": {
-    "case_id": "CASE-GOAI-001",
-    "currency": "RMB",
+    "case_id": "CASE-GOAI-POSTGRES-001",
+    "currency": "USD",
     "documents": [
       {
-        "amount": "1200.00",
-        "confidence": 0.97,
-        "currency": "RMB",
-        "id": "invoice-7781",
-        "kind": "invoice",
-        "summary": "Vendor invoice requesting refund/reversal for duplicate charge."
+        "amount": "0.00",
+        "confidence": 0.99,
+        "currency": "USD",
+        "id": "postgres-ticket-4421",
+        "kind": "postgres_support_ticket",
+        "summary": "Customer asks for refund-status update; database shows duplicate charge review is still pending."
       },
       {
-        "amount": "1200.00",
-        "confidence": 0.91,
-        "currency": "RMB",
-        "id": "ticket-183",
-        "kind": "support_ticket",
-        "summary": "Customer support ticket confirms duplicate billing complaint."
+        "amount": "0.00",
+        "confidence": 0.98,
+        "currency": "USD",
+        "id": "postgres-order-817",
+        "kind": "postgres_order_record",
+        "summary": "Order table confirms no refund has been executed and account is active."
       }
     ],
-    "domain": "financial_risk_control",
+    "domain": "support_ops",
     "human_approval": null,
-    "objective": "Decide whether an enterprise refund claim can be executed safely.",
-    "requested_action": "refund",
-    "stakeholder": "operations_manager"
+    "objective": "Draft a customer support reply from trusted records while blocking outbound send until human approval.",
+    "requested_action": "external_send",
+    "stakeholder": "support_manager"
   },
   "reusable_lesson": {
     "reuse_rule": "When financial/legal side effects are proposed without approval, block execution and emit a reviewer receipt.",
@@ -261,13 +261,13 @@
         "verification_reason": "verified by deterministic gate"
       }
     ],
-    "trigger": "refund"
+    "trigger": "external_send"
   },
   "security": {
     "approval_present": false,
-    "blocked_side_effect": "refund",
+    "blocked_side_effect": "external_send",
     "reasons": [
-      "refund requires explicit human approval",
+      "external_send requires explicit human approval",
       "policy gate requires human approval"
     ],
     "tool_calls": [
@@ -288,12 +288,12 @@
       "agent": "IntakeAgent",
       "created_at": "2026-08-06T00:00:00+00:00",
       "output": {
-        "case_id": "CASE-GOAI-001",
-        "currency": "RMB",
-        "domain": "financial_risk_control",
+        "case_id": "CASE-GOAI-POSTGRES-001",
+        "currency": "USD",
+        "domain": "support_ops",
         "missing_fields": [],
-        "requested_action": "refund",
-        "stakeholder": "operations_manager",
+        "requested_action": "external_send",
+        "stakeholder": "support_manager",
         "tool_calls": [
           {
             "agent_role": "Intake",
@@ -313,20 +313,20 @@
       "output": {
         "evidence": [
           {
-            "amount": "1200.00",
-            "confidence": 0.97,
-            "currency": "RMB",
-            "kind": "invoice",
-            "source_id": "invoice-7781",
-            "summary": "Vendor invoice requesting refund/reversal for duplicate charge."
+            "amount": "0.00",
+            "confidence": 0.99,
+            "currency": "USD",
+            "kind": "postgres_support_ticket",
+            "source_id": "postgres-ticket-4421",
+            "summary": "Customer asks for refund-status update; database shows duplicate charge review is still pending."
           },
           {
-            "amount": "1200.00",
-            "confidence": 0.91,
-            "currency": "RMB",
-            "kind": "support_ticket",
-            "source_id": "ticket-183",
-            "summary": "Customer support ticket confirms duplicate billing complaint."
+            "amount": "0.00",
+            "confidence": 0.98,
+            "currency": "USD",
+            "kind": "postgres_order_record",
+            "source_id": "postgres-order-817",
+            "summary": "Order table confirms no refund has been executed and account is active."
           }
         ],
         "evidence_count": 2,
@@ -348,18 +348,18 @@
       "created_at": "2026-08-06T00:00:00+00:00",
       "output": {
         "policy": {
-          "amount": "1200.00",
+          "amount": "0.00",
           "policy_basis": "financial/legal/destructive actions require human approval; inconsistent evidence blocks execution",
-          "requested_action": "refund",
+          "requested_action": "external_send",
           "requires_human_approval": true,
           "risk_tier": "HIGH"
         },
         "reconciliation": {
           "amounts": [
-            "1200.00"
+            "0.00"
           ],
           "consistent": true,
-          "selected_amount": "1200.00"
+          "selected_amount": "0.00"
         },
         "tool_calls": [
           {
@@ -407,9 +407,9 @@
       "created_at": "2026-08-06T00:00:00+00:00",
       "output": {
         "approval_present": false,
-        "blocked_side_effect": "refund",
+        "blocked_side_effect": "external_send",
         "reasons": [
-          "refund requires explicit human approval",
+          "external_send requires explicit human approval",
           "policy gate requires human approval"
         ],
         "tool_calls": [
@@ -443,7 +443,7 @@
             "verification_reason": "verified by deterministic gate"
           }
         ],
-        "trigger": "refund"
+        "trigger": "external_send"
       }
     }
   ],

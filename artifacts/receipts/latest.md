@@ -12,4 +12,4 @@ Generated from `artifacts/receipts/latest.json` so judges can inspect the core p
 | security gate | BLOCK | blocked=refund |
 | approval boundary | True | policy requires explicit approval |
 | external side effect | not executed | fixture-safe demo boundary |
-| receipt sha256 | efc2ee49361f7c288fafd4cc5cf95ec929328c48a66ccbd858c612c40526da80 | tamper-evident hash |
+| receipt sha256 | acd2aec115bb16121ecf1633b8012dca58d245f71f830fb16164523d1ac3ca52 | tamper-evident hash |

@@ -13,6 +13,13 @@ from agentproof.identity_summary import identity_summary_from_paths
 from agentproof.ops_metrics_summary import ops_metrics_summary_from_paths
 from agentproof.governance_gates_summary import governance_gates_summary_from_paths
 from agentproof.adversarial_summary import adversarial_summary_from_paths
+from agentproof.runtime_controls import (
+    accepted_not_verified_outcomes,
+    agent_identity_coverage,
+    deadman_switch_status,
+    waterfall_trace_markdown,
+    runtime_controls_summary_from_paths,
+)
 from agentproof.skills import validate_skill_contracts
 from agentproof.contracts import build_tool_lock, verify_tool_lock
 
@@ -212,6 +219,67 @@ def test_adversarial_summary_renders_prompt_injection_receipt(tmp_path):
     assert "PROMPT_INJECTION_BLOCKED" in summary
     assert "| authoritative approval field | `None` |" in summary
     assert "| security gate | `BLOCK` |" in summary
+    assert receipt["receipt_sha256"] in summary
+
+
+def test_runtime_controls_detect_accepted_but_unverified_tool_outcome(tmp_path):
+    run_path = tmp_path / "run.json"
+    data = run_fixture(Path("fixtures/cases/vendor_refund_claim.json"), run_path)
+    flagged = accepted_not_verified_outcomes(data)
+    assert flagged == [
+        {
+            "agent": "EvidenceAgent",
+            "tool": "extract_evidence",
+            "outcome": "ACCEPTED_NOT_VERIFIED",
+            "reason": "tool output accepted before deterministic verifier gate",
+        }
+    ]
+
+
+def test_runtime_controls_expose_agent_identity_for_tool_calls(tmp_path):
+    run_path = tmp_path / "run.json"
+    data = run_fixture(Path("fixtures/cases/vendor_refund_claim.json"), run_path)
+    coverage = agent_identity_coverage(data)
+    assert coverage["tool_calls"] >= 3
+    assert coverage["missing_identity"] == []
+    assert "IntakeAgent:normalize_case" in coverage["authority_refs"]
+
+
+def test_runtime_controls_deadman_switch_reports_loop_budget(tmp_path):
+    run_path = tmp_path / "run.json"
+    data = run_fixture(Path("fixtures/cases/vendor_refund_claim.json"), run_path)
+    guard = deadman_switch_status(data, max_steps=8, max_repeated_action=1)
+    assert guard["verdict"] == "PASS"
+    assert guard["steps"] == 6
+    assert guard["max_steps"] == 8
+    assert guard["max_repeated_action"] == 1
+
+
+def test_runtime_controls_waterfall_trace_shows_agents_tools_and_gates(tmp_path):
+    run_path = tmp_path / "run.json"
+    data = run_fixture(Path("fixtures/cases/vendor_refund_claim.json"), run_path)
+    markdown = waterfall_trace_markdown(data)
+    assert "# Agent waterfall trace" in markdown
+    assert "| 2 | EvidenceAgent | extract_evidence | extract_evidence | EvidenceAgent:extract_evidence | ACCEPTED_NOT_VERIFIED |" in markdown
+    assert "| verifier | `PASS` |" in markdown
+    assert "| security | `BLOCK` | blocked_side_effect=refund |" in markdown
+
+
+def test_runtime_controls_summary_renders_all_five_judge_improvements(tmp_path):
+    run_path = tmp_path / "support.json"
+    receipt_path = tmp_path / "support.receipt.json"
+    summary_path = tmp_path / "runtime.md"
+    data = run_fixture(Path("fixtures/cases/support_ticket_postgres_reply.json"), run_path)
+    receipt = receipt_from_run(run_path, receipt_path)
+    summary = runtime_controls_summary_from_paths(run_path, receipt_path, summary_path)
+    assert data["normalized_case"]["domain"] == "support_ops"
+    assert "# Runtime controls proof receipt" in summary
+    assert "accepted-but-not-verified detector" in summary
+    assert "agent identity coverage" in summary
+    assert "dead-man switch" in summary
+    assert "waterfall trace" in summary
+    assert "Postgres-style support workflow" in summary
+    assert "blocked_side_effect=external_send" in summary
     assert receipt["receipt_sha256"] in summary
 
 

@@ -14,7 +14,7 @@ It gives judges the reliability contract before the demo starts: what runs offli
 | AI/API dependency | not required | fixture path is deterministic and runs without live model keys |
 | external side effects | blocked | refund requires explicit human approval; policy gate requires human approval |
 | evidence inputs | PASS | evidence_rows=2 |
-| tamper-evident receipt | PASS | efc2ee49361f7c288fafd4cc5cf95ec929328c48a66ccbd858c612c40526da80 |
+| tamper-evident receipt | PASS | acd2aec115bb16121ecf1633b8012dca58d245f71f830fb16164523d1ac3ca52 |
 | fallback path | local replay | use committed synthetic fixture if live AgentTeams/MCP deployment is unavailable |
 
 ## honest scope boundary

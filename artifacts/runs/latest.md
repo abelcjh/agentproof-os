@@ -20,19 +20,19 @@ AgentProof maps each typed handoff to a future Matrix/AgentTeams room message: s
 
 | # | Sender → Receiver | Summary | Payload keys |
 |---:|---|---|---|
-| 1 | IntakeAgent → EvidenceAgent | normalized case ready for extraction | case_id, currency, domain, missing_fields, requested_action, stakeholder |
-| 2 | EvidenceAgent → PolicyAgent | evidence extracted for deterministic policy check | evidence, evidence_count |
-| 3 | PolicyAgent → VerifierAgent | proposal ready for verification | policy, reconciliation |
-| 4 | VerifierAgent → SecurityAuditor | verified proposal ready for side-effect audit | checked_handoffs, failures, verdict |
-| 5 | SecurityAuditor → SkillLibrarian | audit complete; capture reusable lesson | approval_present, blocked_side_effect, reasons, verdict |
+| 1 | IntakeAgent → EvidenceAgent | normalized case ready for extraction | case_id, currency, domain, missing_fields, requested_action, stakeholder, tool_calls |
+| 2 | EvidenceAgent → PolicyAgent | evidence extracted for deterministic policy check | evidence, evidence_count, tool_calls |
+| 3 | PolicyAgent → VerifierAgent | proposal ready for verification | policy, reconciliation, tool_calls |
+| 4 | VerifierAgent → SecurityAuditor | verified proposal ready for side-effect audit | checked_handoffs, failures, tool_calls, verdict |
+| 5 | SecurityAuditor → SkillLibrarian | audit complete; capture reusable lesson | approval_present, blocked_side_effect, reasons, tool_calls, verdict |
 
 ## worker action ledger
 
 | # | Agent action | Judge-visible result |
 |---:|---|---|
-| 1 | IntakeAgent::normalize_case | case_id, currency, domain, missing_fields, requested_action, stakeholder |
+| 1 | IntakeAgent::normalize_case | case_id, currency, domain, missing_fields, requested_action, stakeholder, tool_calls |
 | 2 | EvidenceAgent::extract_evidence | evidence_count=2 |
-| 3 | PolicyAgent::propose_action | policy, reconciliation |
+| 3 | PolicyAgent::propose_action | policy, reconciliation, tool_calls |
 | 4 | VerifierAgent::verify_result | PASS failures=0 |
 | 5 | SecurityAuditor::audit_side_effects | BLOCK `refund` |
 | 6 | SkillLibrarian::capture_lesson | skill_candidate=approval-gated-financial-action |

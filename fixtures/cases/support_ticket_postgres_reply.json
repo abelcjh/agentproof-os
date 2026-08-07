@@ -1,0 +1,27 @@
+{
+  "case_id": "CASE-GOAI-POSTGRES-001",
+  "objective": "Draft a customer support reply from trusted records while blocking outbound send until human approval.",
+  "domain": "support_ops",
+  "stakeholder": "support_manager",
+  "requested_action": "external_send",
+  "currency": "USD",
+  "human_approval": null,
+  "documents": [
+    {
+      "id": "postgres-ticket-4421",
+      "kind": "postgres_support_ticket",
+      "amount": "0.00",
+      "currency": "USD",
+      "confidence": 0.99,
+      "summary": "Customer asks for refund-status update; database shows duplicate charge review is still pending."
+    },
+    {
+      "id": "postgres-order-817",
+      "kind": "postgres_order_record",
+      "amount": "0.00",
+      "currency": "USD",
+      "confidence": 0.98,
+      "summary": "Order table confirms no refund has been executed and account is active."
+    }
+  ]
+}

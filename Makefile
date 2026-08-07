@@ -14,6 +14,7 @@ verify: test demo
 	$(PYTHON) -m agentproof.cli identity-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/identity/latest.md
 	$(PYTHON) -m agentproof.cli ops-metrics-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/ops/latest.md
 	$(PYTHON) -m agentproof.cli governance-gates-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/governance/latest.md
+	$(PYTHON) -m agentproof.cli runtime-controls-summary --run artifacts/support/latest.json --receipt artifacts/support/latest.receipt.json --out artifacts/runtime/latest.md
 	$(PYTHON) -m agentproof.cli proof-index --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/proof/latest.md
 	$(PYTHON) -m agentproof.cli readiness-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/readiness/latest.md
 	$(PYTHON) -m agentproof.cli gateway-trace --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/gateway/latest.md
@@ -28,3 +29,5 @@ demo:
 	$(PYTHON) -m agentproof.cli receipt --run artifacts/runs/latest.json --out artifacts/receipts/latest.json
 	AGENTPROOF_FIXED_TIME=2026-08-06T00:00:00+00:00 $(PYTHON) -m agentproof.cli run --fixture fixtures/cases/adversarial_refund_prompt_injection.json --out artifacts/adversarial/latest.json
 	$(PYTHON) -m agentproof.cli receipt --run artifacts/adversarial/latest.json --out artifacts/adversarial/latest.receipt.json
+	AGENTPROOF_FIXED_TIME=2026-08-06T00:00:00+00:00 $(PYTHON) -m agentproof.cli run --fixture fixtures/cases/support_ticket_postgres_reply.json --out artifacts/support/latest.json
+	$(PYTHON) -m agentproof.cli receipt --run artifacts/support/latest.json --out artifacts/support/latest.receipt.json
