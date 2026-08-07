@@ -67,6 +67,7 @@ Current judge-readable proof surfaces:
 - `artifacts/ops/latest.md` — operations metrics and observability receipt showing fixture-backed agent/step/handoff/evidence counters, policy decision, side-effect count, and OTel-shaped export fields without claiming a live collector.
 - `artifacts/governance/latest.md` — gateway governance gates receipt showing schema/evidence binding, budget/loop guard, deterministic verifier, human approval authority, side-effect boundary, and portable gate digest without claiming a deployed MCP proxy.
 - `artifacts/runtime/latest.md` — runtime controls receipt showing accepted-but-not-verified detection, per-tool agent identity, dead-man switch budget, waterfall trace, and a Postgres-style support workflow that drafts but blocks outbound send without approval.
+- `docs/REDDIT_API_ACCESS_STATUS.md` — honest API-access blocker receipt: Reddit request submitted, self-serve OAuth app creation still blocked pending manual approval, browser search remains the rule-clean fallback.
 
 ## rule-clean build note
 
