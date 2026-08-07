@@ -15,6 +15,7 @@
 | demo reliability and fallback path are judge-visible | `artifacts/health/latest.md` | `python -m agentproof.cli health-summary ...` | verified by `make verify`; no live model/API key required |
 | reviewer can find every proof surface from one screen | `artifacts/proof/latest.md` | `python -m agentproof.cli proof-index ...` | verified by `make verify`; links trace, receipt, control, health, and replay command |
 | future MCP gateway can carry portable proof without raw payloads | `artifacts/carrier/latest.md` | `python -m agentproof.cli carrier-summary ...` | verified by `make verify`; binds access decision, input/result digests, trace id, policy ref, tool lock, and receipt hash |
+| authority boundary is explicit before side effects | `artifacts/identity/latest.md` | `python -m agentproof.cli identity-summary ...` | verified by `make verify`; binds requester, responsible party, approval requirement, denied side effect, authority digest, and receipt hash |
 
 ## write-ahead rule
 

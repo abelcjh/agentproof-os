@@ -13,6 +13,7 @@ This is the fastest reviewer entrypoint: it links every judge-visible proof surf
 | control surface | `artifacts/control/latest.md` | present | policy / approval / side-effect gate on the request path |
 | demo health | `artifacts/health/latest.md` | present | offline fallback, no-key mode, and honest non-live scope |
 | portable carrier | `artifacts/carrier/latest.md` | present | MCP `_meta` and audit-event fields bound to the receipt |
+| identity boundary | `artifacts/identity/latest.md` | present | requester / responsible-party / approval authority made explicit |
 
 ## bound claims
 

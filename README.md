@@ -42,6 +42,7 @@ python -m agentproof.cli proof-index --run artifacts/runs/latest.json --receipt 
 python -m agentproof.cli readiness-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/readiness/latest.md
 python -m agentproof.cli gateway-trace --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/gateway/latest.md
 python -m agentproof.cli carrier-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/carrier/latest.md
+python -m agentproof.cli identity-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/identity/latest.md
 python -m agentproof.cli check-tool-lock
 ```
 
@@ -59,6 +60,7 @@ Current judge-readable proof surfaces:
 - `artifacts/readiness/latest.md` — rubric-weighted GOAI Agent Infra readiness receipt mapping the current fixture proof to judging buckets and the next gap.
 - `artifacts/gateway/latest.md` — MCP gateway request-path trace showing caller boundary, requested tool, evidence binding, verifier gate, policy decision, approval state, side-effect state, and receipt hash from the deterministic fixture.
 - `artifacts/carrier/latest.md` — portable MCP `_meta` carrier and always-on audit-event sketch binding access decision, digests, trace id, policy ref, tool lock, and receipt hash without exposing raw payloads.
+- `artifacts/identity/latest.md` — identity and authority boundary receipt showing requester, responsible party, approval requirement, denied side effect, and portable authority digest without claiming live DID/OAuth/JWS execution.
 
 ## rule-clean build note
 
