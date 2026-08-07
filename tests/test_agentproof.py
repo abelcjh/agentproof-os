@@ -11,6 +11,7 @@ from agentproof.gateway_trace import gateway_trace_from_paths
 from agentproof.carrier_summary import carrier_summary_from_paths
 from agentproof.identity_summary import identity_summary_from_paths
 from agentproof.ops_metrics_summary import ops_metrics_summary_from_paths
+from agentproof.governance_gates_summary import governance_gates_summary_from_paths
 from agentproof.skills import validate_skill_contracts
 from agentproof.contracts import build_tool_lock, verify_tool_lock
 
@@ -97,6 +98,7 @@ def test_proof_index_renders_judge_packet(tmp_path):
     assert "| side-effect policy | BLOCK | blocked=refund |" in summary
     assert "artifacts/control/latest.md" in summary
     assert "artifacts/ops/latest.md" in summary
+    assert "artifacts/governance/latest.md" in summary
     assert receipt["receipt_sha256"] in summary
 
 
@@ -170,6 +172,21 @@ def test_ops_metrics_summary_renders_observability_receipt(tmp_path):
     assert "| external side effects | `0 executed` | fixture blocks the refund path without approval |" in summary
     assert "`agentproof.policy.decision` | `BLOCK`" in summary
     assert "This fixture does not claim a live OTel collector" in summary
+    assert receipt["receipt_sha256"] in summary
+
+
+def test_governance_gates_summary_renders_pre_tool_call_gates(tmp_path):
+    run_path = tmp_path / "run.json"
+    receipt_path = tmp_path / "receipt.json"
+    summary_path = tmp_path / "governance.md"
+    run_fixture(Path("fixtures/cases/vendor_refund_claim.json"), run_path)
+    receipt = receipt_from_run(run_path, receipt_path)
+    summary = governance_gates_summary_from_paths(run_path, receipt_path, summary_path)
+    assert "# Gateway governance gates receipt" in summary
+    assert "| human approval authority | `BLOCK` | requires=True; present=False |" in summary
+    assert "| side-effect execution boundary | `PASS` | security=BLOCK; blocked=refund; executed=False |" in summary
+    assert "agentproof.gates.digest" in summary
+    assert "This fixture does not claim a deployed MCP proxy" in summary
     assert receipt["receipt_sha256"] in summary
 
 

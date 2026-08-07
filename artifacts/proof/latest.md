@@ -15,6 +15,7 @@ This is the fastest reviewer entrypoint: it links every judge-visible proof surf
 | portable carrier | `artifacts/carrier/latest.md` | present | MCP `_meta` and audit-event fields bound to the receipt |
 | identity boundary | `artifacts/identity/latest.md` | present | requester / responsible-party / approval authority made explicit |
 | ops metrics | `artifacts/ops/latest.md` | present | fixture counters and OTel-shaped export fields for observability review |
+| governance gates | `artifacts/governance/latest.md` | present | five pre-tool-call gates with pass/block reasons and digest |
 
 ## bound claims
 

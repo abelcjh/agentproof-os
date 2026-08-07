@@ -14,6 +14,7 @@ from .gateway_trace import gateway_trace_from_paths
 from .carrier_summary import carrier_summary_from_paths
 from .identity_summary import identity_summary_from_paths
 from .ops_metrics_summary import ops_metrics_summary_from_paths
+from .governance_gates_summary import governance_gates_summary_from_paths
 from .skills import validate_skill_contracts
 from .contracts import build_tool_lock, verify_tool_lock
 
@@ -81,6 +82,11 @@ def main() -> None:
     ops_p.add_argument("--receipt", required=True)
     ops_p.add_argument("--out", required=True)
 
+    gates_p = sub.add_parser("governance-gates-summary")
+    gates_p.add_argument("--run", required=True)
+    gates_p.add_argument("--receipt", required=True)
+    gates_p.add_argument("--out", required=True)
+
     lock_p = sub.add_parser("write-tool-lock")
     lock_p.add_argument("--out", default="mcp_tools.lock.json")
 
@@ -131,6 +137,9 @@ def main() -> None:
     elif args.cmd == "ops-metrics-summary":
         ops_metrics_summary_from_paths(Path(args.run), Path(args.receipt), Path(args.out))
         print(f"ops metrics summary written: {args.out}")
+    elif args.cmd == "governance-gates-summary":
+        governance_gates_summary_from_paths(Path(args.run), Path(args.receipt), Path(args.out))
+        print(f"governance gates summary written: {args.out}")
     elif args.cmd == "check-skills":
         errors = validate_skill_contracts()
         if errors:

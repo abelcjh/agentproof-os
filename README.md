@@ -44,6 +44,7 @@ python -m agentproof.cli gateway-trace --run artifacts/runs/latest.json --receip
 python -m agentproof.cli carrier-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/carrier/latest.md
 python -m agentproof.cli identity-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/identity/latest.md
 python -m agentproof.cli ops-metrics-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/ops/latest.md
+python -m agentproof.cli governance-gates-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/governance/latest.md
 python -m agentproof.cli check-tool-lock
 ```
 
@@ -63,6 +64,7 @@ Current judge-readable proof surfaces:
 - `artifacts/carrier/latest.md` — portable MCP `_meta` carrier and always-on audit-event sketch binding access decision, digests, trace id, policy ref, tool lock, and receipt hash without exposing raw payloads.
 - `artifacts/identity/latest.md` — identity and authority boundary receipt showing requester, responsible party, approval requirement, denied side effect, and portable authority digest without claiming live DID/OAuth/JWS execution.
 - `artifacts/ops/latest.md` — operations metrics and observability receipt showing fixture-backed agent/step/handoff/evidence counters, policy decision, side-effect count, and OTel-shaped export fields without claiming a live collector.
+- `artifacts/governance/latest.md` — gateway governance gates receipt showing schema/evidence binding, budget/loop guard, deterministic verifier, human approval authority, side-effect boundary, and portable gate digest without claiming a deployed MCP proxy.
 
 ## rule-clean build note
 
