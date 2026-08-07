@@ -29,6 +29,7 @@ def build_proof_index(run: dict[str, Any], receipt: dict[str, Any], artifact_pat
         ("demo health", artifact_paths["health_md"], "offline fallback, no-key mode, and honest non-live scope"),
         ("portable carrier", artifact_paths["carrier_md"], "MCP `_meta` and audit-event fields bound to the receipt"),
         ("identity boundary", artifact_paths["identity_md"], "requester / responsible-party / approval authority made explicit"),
+        ("ops metrics", artifact_paths["ops_md"], "fixture counters and OTel-shaped export fields for observability review"),
     ]
     packet_table = ["| Proof artifact | Path | Status | What it proves |", "|---|---|---|---|"]
     packet_table.extend(
@@ -85,6 +86,7 @@ def proof_index_from_paths(run_path: Path, receipt_path: Path, out: Path) -> str
         "health_md": Path("artifacts/health/latest.md"),
         "carrier_md": Path("artifacts/carrier/latest.md"),
         "identity_md": Path("artifacts/identity/latest.md"),
+        "ops_md": Path("artifacts/ops/latest.md"),
     }
     summary = build_proof_index(run, receipt, artifact_paths)
     out.parent.mkdir(parents=True, exist_ok=True)

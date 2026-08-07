@@ -12,6 +12,7 @@ verify: test demo
 	$(PYTHON) -m agentproof.cli health-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/health/latest.md
 	$(PYTHON) -m agentproof.cli carrier-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/carrier/latest.md
 	$(PYTHON) -m agentproof.cli identity-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/identity/latest.md
+	$(PYTHON) -m agentproof.cli ops-metrics-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/ops/latest.md
 	$(PYTHON) -m agentproof.cli proof-index --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/proof/latest.md
 	$(PYTHON) -m agentproof.cli readiness-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/readiness/latest.md
 	$(PYTHON) -m agentproof.cli gateway-trace --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/gateway/latest.md

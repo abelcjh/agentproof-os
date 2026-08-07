@@ -13,6 +13,7 @@ from .readiness_summary import readiness_summary_from_paths
 from .gateway_trace import gateway_trace_from_paths
 from .carrier_summary import carrier_summary_from_paths
 from .identity_summary import identity_summary_from_paths
+from .ops_metrics_summary import ops_metrics_summary_from_paths
 from .skills import validate_skill_contracts
 from .contracts import build_tool_lock, verify_tool_lock
 
@@ -75,6 +76,11 @@ def main() -> None:
     identity_p.add_argument("--receipt", required=True)
     identity_p.add_argument("--out", required=True)
 
+    ops_p = sub.add_parser("ops-metrics-summary")
+    ops_p.add_argument("--run", required=True)
+    ops_p.add_argument("--receipt", required=True)
+    ops_p.add_argument("--out", required=True)
+
     lock_p = sub.add_parser("write-tool-lock")
     lock_p.add_argument("--out", default="mcp_tools.lock.json")
 
@@ -122,6 +128,9 @@ def main() -> None:
     elif args.cmd == "identity-summary":
         identity_summary_from_paths(Path(args.run), Path(args.receipt), Path(args.out))
         print(f"identity summary written: {args.out}")
+    elif args.cmd == "ops-metrics-summary":
+        ops_metrics_summary_from_paths(Path(args.run), Path(args.receipt), Path(args.out))
+        print(f"ops metrics summary written: {args.out}")
     elif args.cmd == "check-skills":
         errors = validate_skill_contracts()
         if errors:
