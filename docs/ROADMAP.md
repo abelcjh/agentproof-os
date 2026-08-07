@@ -14,7 +14,7 @@
 
 - [x] policy-as-code YAML with tests
 - [x] MCP tool lockfile and schema drift check
-- [ ] adversarial unsafe-action fixture
+- [x] adversarial unsafe-action fixture
 - [x] receipt metrics summary table
 - [x] generated AgentTeams-style trace summary
 - [x] generated gateway/control-surface summary

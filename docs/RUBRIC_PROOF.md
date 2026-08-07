@@ -17,6 +17,7 @@
 | future MCP gateway can carry portable proof without raw payloads | `artifacts/carrier/latest.md` | `python -m agentproof.cli carrier-summary ...` | verified by `make verify`; binds access decision, input/result digests, trace id, policy ref, tool lock, and receipt hash |
 | authority boundary is explicit before side effects | `artifacts/identity/latest.md` | `python -m agentproof.cli identity-summary ...` | verified by `make verify`; binds requester, responsible party, approval requirement, denied side effect, authority digest, and receipt hash |
 | operations proof is visible before live observability integration | `artifacts/ops/latest.md` | `python -m agentproof.cli ops-metrics-summary ...` | verified by `make verify`; exposes deterministic agent/step/handoff/evidence counters, side-effect count, and OTel-shaped fields without claiming a live collector |
+| prompt-injected evidence cannot self-approve unsafe actions | `fixtures/cases/adversarial_refund_prompt_injection.json`, `artifacts/adversarial/latest.md` | `python -m agentproof.cli adversarial-summary ...` | verified by `make verify`; approval-looking document text is treated as data and refund remains blocked without structured `human_approval` |
 
 ## write-ahead rule
 

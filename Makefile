@@ -17,6 +17,8 @@ verify: test demo
 	$(PYTHON) -m agentproof.cli proof-index --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/proof/latest.md
 	$(PYTHON) -m agentproof.cli readiness-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/readiness/latest.md
 	$(PYTHON) -m agentproof.cli gateway-trace --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/gateway/latest.md
+	$(PYTHON) -m agentproof.cli verify-receipt --receipt artifacts/adversarial/latest.receipt.json
+	$(PYTHON) -m agentproof.cli adversarial-summary --run artifacts/adversarial/latest.json --receipt artifacts/adversarial/latest.receipt.json --out artifacts/adversarial/latest.md
 
 test:
 	$(PYTHON) -m pytest -q
@@ -24,3 +26,5 @@ test:
 demo:
 	AGENTPROOF_FIXED_TIME=2026-08-06T00:00:00+00:00 $(PYTHON) -m agentproof.cli run --fixture fixtures/cases/vendor_refund_claim.json --out artifacts/runs/latest.json
 	$(PYTHON) -m agentproof.cli receipt --run artifacts/runs/latest.json --out artifacts/receipts/latest.json
+	AGENTPROOF_FIXED_TIME=2026-08-06T00:00:00+00:00 $(PYTHON) -m agentproof.cli run --fixture fixtures/cases/adversarial_refund_prompt_injection.json --out artifacts/adversarial/latest.json
+	$(PYTHON) -m agentproof.cli receipt --run artifacts/adversarial/latest.json --out artifacts/adversarial/latest.receipt.json
