@@ -13,6 +13,7 @@
 | receipt has a judge-readable proof table | `artifacts/receipts/latest.md` | `python -m agentproof.cli receipt-summary ...` | verified by `make verify` |
 | gateway-style controls are visible without claiming live MCP deployment | `artifacts/control/latest.md` | `python -m agentproof.cli control-summary ...` | verified by `make verify` |
 | demo reliability and fallback path are judge-visible | `artifacts/health/latest.md` | `python -m agentproof.cli health-summary ...` | verified by `make verify`; no live model/API key required |
+| reviewer can find every proof surface from one screen | `artifacts/proof/latest.md` | `python -m agentproof.cli proof-index ...` | verified by `make verify`; links trace, receipt, control, health, and replay command |
 
 ## write-ahead rule
 

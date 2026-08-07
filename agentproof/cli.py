@@ -8,6 +8,7 @@ from .receipt import receipt_from_run, verify_receipt, summary_from_receipt
 from .trace_summary import trace_summary_from_run
 from .control_summary import control_summary_from_paths
 from .health_summary import health_summary_from_paths
+from .proof_index import proof_index_from_paths
 from .skills import validate_skill_contracts
 from .contracts import build_tool_lock, verify_tool_lock
 
@@ -45,6 +46,11 @@ def main() -> None:
     health_p.add_argument("--receipt", required=True)
     health_p.add_argument("--out", required=True)
 
+    proof_p = sub.add_parser("proof-index")
+    proof_p.add_argument("--run", required=True)
+    proof_p.add_argument("--receipt", required=True)
+    proof_p.add_argument("--out", required=True)
+
     lock_p = sub.add_parser("write-tool-lock")
     lock_p.add_argument("--out", default="mcp_tools.lock.json")
 
@@ -77,6 +83,9 @@ def main() -> None:
     elif args.cmd == "health-summary":
         health_summary_from_paths(Path(args.run), Path(args.receipt), Path(args.out))
         print(f"health summary written: {args.out}")
+    elif args.cmd == "proof-index":
+        proof_index_from_paths(Path(args.run), Path(args.receipt), Path(args.out))
+        print(f"proof index written: {args.out}")
     elif args.cmd == "check-skills":
         errors = validate_skill_contracts()
         if errors:

@@ -5,6 +5,7 @@ from agentproof.receipt import receipt_from_run, verify_receipt, summary_from_re
 from agentproof.trace_summary import trace_summary_from_run
 from agentproof.control_summary import control_summary_from_paths
 from agentproof.health_summary import health_summary_from_paths
+from agentproof.proof_index import proof_index_from_paths
 from agentproof.skills import validate_skill_contracts
 from agentproof.contracts import build_tool_lock, verify_tool_lock
 
@@ -76,6 +77,20 @@ def test_health_summary_renders_demo_fallback_contract(tmp_path):
     assert "| one-command verify | make verify |" in summary
     assert "| AI/API dependency | not required |" in summary
     assert "| external side effects | blocked |" in summary
+    assert receipt["receipt_sha256"] in summary
+
+
+def test_proof_index_renders_judge_packet(tmp_path):
+    run_path = tmp_path / "run.json"
+    receipt_path = tmp_path / "receipt.json"
+    summary_path = tmp_path / "proof.md"
+    run_fixture(Path("fixtures/cases/vendor_refund_claim.json"), run_path)
+    receipt = receipt_from_run(run_path, receipt_path)
+    summary = proof_index_from_paths(run_path, receipt_path, summary_path)
+    assert "# Judge proof packet index" in summary
+    assert "| agent roles | 6 | >=3 distinct agents required by GOAI Agent Infra |" in summary
+    assert "| side-effect policy | BLOCK | blocked=refund |" in summary
+    assert "artifacts/control/latest.md" in summary
     assert receipt["receipt_sha256"] in summary
 
 
