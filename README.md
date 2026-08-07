@@ -39,6 +39,7 @@ python -m agentproof.cli receipt-summary --receipt artifacts/receipts/latest.jso
 python -m agentproof.cli control-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/control/latest.md
 python -m agentproof.cli health-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/health/latest.md
 python -m agentproof.cli proof-index --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/proof/latest.md
+python -m agentproof.cli readiness-summary --run artifacts/runs/latest.json --receipt artifacts/receipts/latest.json --out artifacts/readiness/latest.md
 python -m agentproof.cli check-tool-lock
 ```
 
@@ -53,6 +54,7 @@ Current judge-readable proof surfaces:
 - `artifacts/control/latest.md` — gateway-style control surface showing task identity, actor boundary, requested action, verifier result, policy decision, approval gate, side-effect state, and rule-clean MCP/observability inspiration mapping.
 - `artifacts/health/latest.md` — demo health and fallback contract showing public repo, `make verify`, fixture mode, no-key AI fallback, blocked side effects, receipt hash, and honest non-live scope.
 - `artifacts/proof/latest.md` — one-screen judge proof packet linking trace, receipt, control, and health artifacts to bound claims and the replay command.
+- `artifacts/readiness/latest.md` — rubric-weighted GOAI Agent Infra readiness receipt mapping the current fixture proof to judging buckets and the next gap.
 
 ## rule-clean build note
 
