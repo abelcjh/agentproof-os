@@ -11,6 +11,7 @@ from .health_summary import health_summary_from_paths
 from .proof_index import proof_index_from_paths
 from .readiness_summary import readiness_summary_from_paths
 from .gateway_trace import gateway_trace_from_paths
+from .carrier_summary import carrier_summary_from_paths
 from .skills import validate_skill_contracts
 from .contracts import build_tool_lock, verify_tool_lock
 
@@ -63,6 +64,11 @@ def main() -> None:
     gateway_p.add_argument("--receipt", required=True)
     gateway_p.add_argument("--out", required=True)
 
+    carrier_p = sub.add_parser("carrier-summary")
+    carrier_p.add_argument("--run", required=True)
+    carrier_p.add_argument("--receipt", required=True)
+    carrier_p.add_argument("--out", required=True)
+
     lock_p = sub.add_parser("write-tool-lock")
     lock_p.add_argument("--out", default="mcp_tools.lock.json")
 
@@ -104,6 +110,9 @@ def main() -> None:
     elif args.cmd == "gateway-trace":
         gateway_trace_from_paths(Path(args.run), Path(args.receipt), Path(args.out))
         print(f"gateway trace written: {args.out}")
+    elif args.cmd == "carrier-summary":
+        carrier_summary_from_paths(Path(args.run), Path(args.receipt), Path(args.out))
+        print(f"carrier summary written: {args.out}")
     elif args.cmd == "check-skills":
         errors = validate_skill_contracts()
         if errors:

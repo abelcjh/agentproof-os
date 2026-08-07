@@ -12,6 +12,7 @@ This is the fastest reviewer entrypoint: it links every judge-visible proof surf
 | receipt proof table | `artifacts/receipts/latest.md` | present | compact core signals and receipt hash |
 | control surface | `artifacts/control/latest.md` | present | policy / approval / side-effect gate on the request path |
 | demo health | `artifacts/health/latest.md` | present | offline fallback, no-key mode, and honest non-live scope |
+| portable carrier | `artifacts/carrier/latest.md` | present | MCP `_meta` and audit-event fields bound to the receipt |
 
 ## bound claims
 

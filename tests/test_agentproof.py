@@ -8,6 +8,7 @@ from agentproof.health_summary import health_summary_from_paths
 from agentproof.proof_index import proof_index_from_paths
 from agentproof.readiness_summary import readiness_summary_from_paths
 from agentproof.gateway_trace import gateway_trace_from_paths
+from agentproof.carrier_summary import carrier_summary_from_paths
 from agentproof.skills import validate_skill_contracts
 from agentproof.contracts import build_tool_lock, verify_tool_lock
 
@@ -121,6 +122,21 @@ def test_gateway_trace_renders_request_path_checkpoints(tmp_path):
     assert "| requested tool | refund |" in summary
     assert "| policy / security decision | BLOCK |" in summary
     assert "| external side effect | not executed | blocked=refund |" in summary
+    assert receipt["receipt_sha256"] in summary
+
+
+def test_carrier_summary_renders_mcp_meta_and_audit_event(tmp_path):
+    run_path = tmp_path / "run.json"
+    receipt_path = tmp_path / "receipt.json"
+    summary_path = tmp_path / "carrier.md"
+    run_fixture(Path("fixtures/cases/vendor_refund_claim.json"), run_path)
+    receipt = receipt_from_run(run_path, receipt_path)
+    summary = carrier_summary_from_paths(run_path, receipt_path, summary_path)
+    assert "# Portable MCP receipt carrier" in summary
+    assert "`org.agentproof/receipt_ref`" in summary
+    assert "`org.agentproof/access_decision` | `BLOCK`" in summary
+    assert "`event_name` | `mcp.audit.tool_call`" in summary
+    assert "`params_digest`" in summary
     assert receipt["receipt_sha256"] in summary
 
 
